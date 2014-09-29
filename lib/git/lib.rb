@@ -6,7 +6,9 @@ module Git
   end
   
   class Lib
-      
+     
+    @@semaphore = Mutex.new
+
     def initialize(base = nil, logger = nil)
       @git_dir = nil
       @git_index_file = nil
@@ -734,30 +736,36 @@ module Git
     end
     
     def command(cmd, opts = [], chdir = true, redirect = '', &block)
-      ENV['GIT_DIR'] = @git_dir
-      ENV['GIT_WORK_TREE'] = @git_work_dir
-      ENV['GIT_INDEX_FILE'] = @git_index_file
-
-      path = @git_work_dir || @git_dir || @path
-      
+      global_opts = []
+      global_opts << "--git-dir=#{@git_dir}" if !@git_dir.nil?
+      global_opts << "--work-tree=#{@git_work_dir}" if !@git_work_dir.nil?
       opts = [opts].flatten.map {|s| escape(s) }.join(' ')
-
-      git_cmd = "git #{cmd} #{opts} #{redirect} 2>&1"
-
+      global_opts = global_opts.flatten.map {|s| escape(s) }.join(' ')
+      git_cmd = "git #{global_opts} #{cmd} #{opts} #{redirect} 2>&1"
       output = nil
+      path = @git_work_dir || @git_dir || @path
+      command_thread = nil; 
+      exitstatus = nil
 
-      if chdir && (Dir.getwd != path)
-        Dir.chdir(path) { output = run_command(git_cmd, &block) } 
-      else
-        output = run_command(git_cmd, &block)
+      @@semaphore.synchronize do
+        ENV['GIT_DIR'] = @git_dir
+        ENV['GIT_WORK_TREE'] = @git_work_dir
+        ENV['GIT_INDEX_FILE'] = @git_index_file
+
+        command_thread = Thread.new do 
+          output = run_command(git_cmd, &block)
+          exitstatus = $?.exitstatus
+        end
       end
+
+      command_thread.join
       
       if @logger
         @logger.info(git_cmd)
         @logger.debug(output)
       end
             
-      if $?.exitstatus > 1 || ($?.exitstatus == 1 && output != '')
+      if exitstatus > 1 || (exitstatus == 1 && output != '')
         raise Git::GitExecuteError.new(git_cmd + ':' + output.to_s) 
       end
 
@@ -814,7 +822,6 @@ module Git
      
       arr_opts << opts[:object] if opts[:object].is_a? String
       arr_opts << '--' << opts[:path_limiter] if opts[:path_limiter]
-
       arr_opts
     end
     
