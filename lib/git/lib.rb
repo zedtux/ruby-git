@@ -395,7 +395,7 @@ module Git
       diff_as_hash('diff-index', treeish)
     end
 
-    def ls_files(location=nil)
+    def ls_files(location='.')
       hsh = {}
       command_lines('ls-files', ['--stage', location]).each do |line|
         (info, file) = line.split("\t")
@@ -860,9 +860,9 @@ module Git
     def command_lines(cmd, opts = [], chdir = true, redirect = '')
       cmd_op = command(cmd, opts, chdir)
       op = cmd_op.encode("UTF-8", "binary", {
-	  	:invalid => :replace,
-		:undef => :replace
-	  })
+      :invalid => :replace,
+    :undef => :replace
+    })
       op.split("\n")
     end
 
