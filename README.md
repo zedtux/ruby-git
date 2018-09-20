@@ -2,6 +2,27 @@
 
 Library for using Git in Ruby.
 
+# ruby-git-ce
+
+The ruby-git Community Edition is a fork of the awesome but incomplete and
+unmaintained ruby-git gem.
+
+The aim of this fork is to accept people's pull requests, then allow to accept
+other pull requests, and so on.
+
+With this principle, when I'll not be available next time, this repository will
+not be abandoned, and people can still rely on it.
+I want to be sure this little piece of love, that is this library, will never
+stop growing, even when I'll be on something else.
+
+BTW there will be NO stupid bots closing your PRs ! (Who the hell is the stupid
+guy who invented this absurd concept ... 🤦‍)
+
+If this kind of ways is working fine, that would be great to creation an
+organisation to group those Community Editions all together.
+
+Anyway, it's a new concept I'd like to try ! 😉
+
 ## Homepage
 
 Git public hosting of the project source code is at:
