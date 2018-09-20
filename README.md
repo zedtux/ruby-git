@@ -6,7 +6,7 @@ Library for using Git in Ruby.
 
 Git public hosting of the project source code is at:
 
-http://github.com/ruby-git/ruby-git
+http://github.com/zedtux/ruby-git-ce
 
 ## Install
 
@@ -16,27 +16,40 @@ You can install Ruby/Git like this:
 
 ## Code Status
 
-* [![Build Status](https://travis-ci.org/ruby-git/ruby-git.svg?branch=master)](https://travis-ci.org/ruby-git/ruby-git)
-* [![Code Climate](https://codeclimate.com/github/ruby-git/ruby-git.png)](https://codeclimate.com/github/ruby-git/ruby-git)
+* [![Build Status](https://travis-ci.org/zedtux/ruby-git-ce.svg?branch=master)](https://travis-ci.org/zedtux/ruby-git-ce)
+* [![Code Climate](https://codeclimate.com/github/zedtux/ruby-git-ce.png)](https://codeclimate.com/github/zedtux/ruby-git-ce)
 * [![Gem Version](https://badge.fury.io/rb/git.png)](http://badge.fury.io/rb/git)
 
 ## Major Objects
 
-**Git::Base** - The object returned from a `Git.open` or `Git.clone`. Most major actions are called from this object.
+**Git::Base** - The object returned from a `Git.open` or `Git.clone`.
+Most major actions are called from this object.
 
-**Git::Object** - The base object for your tree, blob and commit objects, returned from `@git.gtree` or `@git.object` calls.  the `Git::AbstractObject` will have most of the calls in common for all those objects.
+**Git::Object** - The base object for your tree, blob and commit objects,
+returned from `@git.gtree` or `@git.object` calls.  the `Git::AbstractObject`
+will have most of the calls in common for all those objects.
 
-**Git::Diff** - returns from a `@git.diff` command.  It is an Enumerable that returns `Git::Diff:DiffFile` objects from which you can get per file patches and insertion/deletion statistics.  You can also get total statistics from the Git::Diff object directly.
+**Git::Diff** - returns from a `@git.diff` command.  It is an Enumerable that
+returns `Git::Diff:DiffFile` objects from which you can get per file patches and
+insertion/deletion statistics.  You can also get total statistics from the
+Git::Diff object directly.
 
-**Git::Status** - returns from a `@git.status` command.  It is an Enumerable that returns
-`Git:Status::StatusFile` objects for each object in git, which includes files in the working
-directory, in the index and in the repository.  Similar to running 'git status' on the command line to determine untracked and changed files.
+**Git::Status** - returns from a `@git.status` command.  It is an Enumerable
+that returns `Git:Status::StatusFile` objects for each object in git, which
+includes files in the working directory, in the index and in the repository.
+Similar to running 'git status' on the command line to determine untracked and
+changed files.
 
-**Git::Branches** - Enumerable object that holds `Git::Branch objects`.  You can call .local or .remote on it to filter to just your local or remote branches.
+**Git::Branches** - Enumerable object that holds `Git::Branch objects`.
+You can call .local or .remote on it to filter to just your local or remote
+branches.
 
-**Git::Remote**- A reference to a remote repository that is tracked by this repository.
+**Git::Remote**- A reference to a remote repository that is tracked by this
+repository.
 
-**Git::Log** - An Enumerable object that references all the `Git::Object::Commit` objects that encompass your log query, which can be constructed through methods on the `Git::Log object`,
+**Git::Log** - An Enumerable object that references all the
+`Git::Object::Commit` objects that encompass your log query, which can be
+constructed through methods on the `Git::Log object`,
 like:
 
  `@git.log(20).object("some_file").since("2 weeks ago").between('v2.6', 'v2.7').each { |commit| [block] }`
@@ -154,7 +167,8 @@ Here are the operations that need read permission only.
     g.show('HEAD')
     g.show('v2.8', 'README.md')
 
-    Git.ls_remote('https://github.com/ruby-git/ruby-git.git') # returns a hash containing the available references of the repo.
+    # returns a hash containing the available references of the repo.
+    Git.ls_remote('https://github.com/zedtux/ruby-git-ce.git')
     Git.ls_remote('/path/to/local/repo')
     Git.ls_remote() # same as Git.ls_remote('.')
 
@@ -295,4 +309,5 @@ Some examples of more low-level index and tree operations
 
 ## License
 
-licensed under MIT License Copyright (c) 2008  Scott Chacon. See LICENSE for further details.
+licensed under MIT License Copyright (c) 2008  Scott Chacon. See LICENSE for
+further details.
