@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.5.0.1
+
+* Adds the rebase command
+
 ## 1.5.0
 
 See https://github.com/ruby-git/ruby-git/releases/tag/v1.5.0
@@ -91,4 +95,3 @@ See https://github.com/ruby-git/ruby-git/releases/tag/v1.4.0
 ## 1.0.1
 
 * Initial version
-
