@@ -18,7 +18,7 @@ You can install Ruby/Git like this:
 
 * [![Build Status](https://travis-ci.org/zedtux/ruby-git-ce.svg?branch=master)](https://travis-ci.org/zedtux/ruby-git-ce)
 * [![Code Climate](https://codeclimate.com/github/zedtux/ruby-git-ce.png)](https://codeclimate.com/github/zedtux/ruby-git-ce)
-* [![Gem Version](https://badge.fury.io/rb/git.png)](http://badge.fury.io/rb/git)
+* [![Gem Version](https://badge.fury.io/rb/git-ce.png)](http://badge.fury.io/rb/git-ce)
 
 ## Major Objects
 
