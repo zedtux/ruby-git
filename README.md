@@ -33,7 +33,7 @@ http://github.com/zedtux/ruby-git-ce
 
 You can install Ruby/Git like this:
 
-    $ sudo gem install git
+    $ sudo gem install git-ce
 
 ## Code Status
 
