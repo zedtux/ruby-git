@@ -1,5 +1,7 @@
 # Change Log
 
+* Allow passing a `:log` to `Git.clone`
+
 ## 1.5.0.1
 
 * Adds the rebase command
