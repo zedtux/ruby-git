@@ -420,7 +420,7 @@ module Git
     def ls_remote(location = nil, ref = nil)
       location ||= '.'
       Hash.new{ |h,k| h[k] = {} }.tap do |hsh|
-        command_lines('ls-remote', [location, ref], false).each do |line|
+        command_lines('ls-remote', [location, ref].compact, false).each do |line|
           (sha, info) = line.split("\t")
           (ref, type, name) = info.split('/', 3)
           type ||= 'head'
