@@ -1,6 +1,7 @@
 # Change Log
 
 * Allow passing a `:log` to `Git.clone`
+* Allow passing a ref to `Git.ls_remote`
 
 ## 1.5.0.1
 
