@@ -672,8 +672,15 @@ module Git
       command('merge', arr_opts)
     end
 
-    def rebase(branch)
-      command('rebase', [branch])
+    def rebase(branch, opts = {})
+      arr_opts = []
+      arr_opts << branch
+      if opts[:strategy_option]
+        arr_opts << '--merge'
+        arr_opts << '--strategy-option' << opts[:strategy_option]
+      end
+
+      command('rebase', arr_opts)
     end
 
     def unmerged
